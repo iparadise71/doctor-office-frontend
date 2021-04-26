@@ -1,0 +1,84 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$enable-rounded: false;
+$theme-font: 'Lato', sans-serif !default;
+$blue: #385399;
+$black: #000000;
+$theme-colors: (
+  primary: $blue
+);
+$kbd-box-shadow: 0 -.1rem 0 rgba($black, .25);
+$btn-box-shadow: 1px 1px 2px rgba($black, .15);
+$font-family-sans-serif: $theme-font !default;
+$font-family-serif:      $theme-font !default;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $theme-font !default;
+$enable-shadows: true;
+$btn-active-box-shadow: 0 3px 5px rgba($black, .125);
+$custom-select-box-shadow: 0 1px 2px rgba($black, .075);
+$border-color: rgba($black, .1);
+$card-border-color: $border-color;
+$input-border-color: $border-color;
+$progress-bg: $gray-100;
+$gray-200: #eee;
+$font-size-base: 0.8rem;
+$input-btn-focus-width: .01rem;
+$input-disabled-bg: $gray-100;
+$body-color: $gray-800;
+$input-color: $body-color;
+$badge-font-size: 74%;
+$badge-padding-y: .3em;
+$breadcrumb-padding-y: 0.5rem;
+$breadcrumb-divider-color: $gray-500;
+$breadcrumb-bg: null;
+$close-font-weight: $font-weight-light;
+$input-box-shadow: inset 0 0.3px 0.3px rgba($black, .075);
+$input-placeholder-color: $gray-400;
+
+$unit-map: (
+  per: '%',
+  px: 'px',
+  rem: 'rem',
+  vh: 'vh',
+  vw: 'vw',
+);
+@for $size from 0 through 100 {
+  @each $unit, $ut in $unit-map {
+    .width-#{$size}#{$unit} {
+      width: #{$size}#{$ut} !important;
+    }
+  }
+}
+@for $size from 0 through 100 {
+  @each $unit, $ut in $unit-map {
+    .calc-w100-#{$size}#{$unit} {
+      width: calc(100vw - (#{$size}#{$ut})) !important;
+    }
+  }
+}
+
+@for $size from 0 through 100 {
+  @each $unit, $ut in $unit-map {
+    .height-#{$size}#{$unit} {
+      height: #{$size}#{$ut} !important;
+    }
+  }
+}
+
+@for $size from 0 through 100 {
+  @each $unit, $ut in $unit-map {
+    .calc-h100-#{$size}#{$unit} {
+      height: calc(100vh - (#{$size}#{$ut})) !important;
+    }
+  }
+}
+
+@for $size from 0 through 100 {
+  @each $unit, $ut in $unit-map {
+    .font-size-#{$size}#{$unit} {
+      font-size: #{$size}#{$ut} !important;
+    }
+  }
+}
+@import "~bootstrap/scss/bootstrap";

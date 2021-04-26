@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top d-flex w-100 justify-content-between header" [ngClass]="extraClass">
+  <a class="navbar-brand text-white p-0 m-0 d-flex flex-row align-items-center p-2" href="home">
+    <img width="35" src="./assets/img/logo.png" alt="medico">
+    <span class="text-primary pl-2">MEDICO</span>
+  </a>
+  <div class="collapse navbar-collapse justify-content-end">
+    <ul class="navbar-nav d-flex mt-2 mt-lg-0 text-white">
+      <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="'/home'">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="'/doctors'">Doctores</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="'/patients'">Pacientes</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="'/medical-record'">Historial de consultas</a>
+      </li>
+    </ul>
+  </div>
+</nav>

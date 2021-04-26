@@ -1,0 +1,31 @@
+<app-header [extraClass]="'position-fixed fixed-top'"></app-header>
+<div class="vh-100 vw-100 d-flex">
+  <ngb-carousel class="vh-100 vw-100" ngb *ngIf="slideList">
+    <ng-container *ngFor="let slide of slideList">
+      <ng-template ngbSlide>
+        <div class="vh-100 w-auto">
+          <img class="cover" [src]="slide.img">
+        </div>
+        <div class="carousel-caption">
+          <h1>{{slide.title}}</h1>
+          <h5 class="font-weight-light">{{slide.description}}</h5>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ngb-carousel>
+</div>
+<div class="card-deck position-fixed fixed-bottom w-100 justify-content-center m-0">
+  <div class="px-5 d-flex flex-row">
+    <ng-container *ngFor="let card of optionList">
+      <app-card-option class="card"
+                       [image]="card.img"
+                       [title]="card.title"
+                       [detail]="card.description"
+                       [actionLbl]="card.actionLbl"
+                       [action]="card.action"
+      ></app-card-option>
+    </ng-container>
+  </div>
+
+</div>
+

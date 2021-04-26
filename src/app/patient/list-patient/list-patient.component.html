@@ -1,0 +1,12 @@
+<h5>Lista de pacientes</h5>
+<br>
+<app-table-list
+  [columnList]="utils.columnPatient"
+  [dataList]="patientList"
+  [dataListAux]="patientList"
+  [searchPlaceholder]="'Buscar por nombre, apellido, especialidad, dirección'"
+  (rowSelected)="showRowDetail($event)"
+  [collectionSize]="total"
+  [page]="utils.page"
+  [pageSize]="utils.pageSize"
+></app-table-list>

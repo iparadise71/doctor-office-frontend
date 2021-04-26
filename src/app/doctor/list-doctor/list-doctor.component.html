@@ -1,0 +1,12 @@
+<h5>Lista de doctores</h5>
+<br>
+<app-table-list
+ [columnList]="utils.columnDoctor"
+ [dataList]="doctorList"
+ [dataListAux]="doctorList"
+ [searchPlaceholder]="'Buscar por nombre, apellido, especialidad, dirección'"
+ (rowSelected)="showRowDetail($event)"
+ [collectionSize]="total"
+ [page]="utils.page"
+ [pageSize]="utils.pageSize"
+></app-table-list>

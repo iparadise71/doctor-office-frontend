@@ -1,0 +1,8 @@
+<div class="card p-3 m-0">
+  <img *ngIf="image" class="card-img-top" [src]="image" alt="Card image cap">
+  <div class="card-body px-0">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text font-weight-light">{{detail}}</p>
+  </div>
+  <button class="btn btn-primary w-100" [routerLink]="action">{{actionLbl}}</button>
+</div>

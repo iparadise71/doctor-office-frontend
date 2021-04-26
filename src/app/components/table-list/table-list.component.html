@@ -1,0 +1,30 @@
+<div *ngIf="searchPlaceholder">
+  <app-search-field #filter [(value)]="value" placeholder="{{searchPlaceholder}}"></app-search-field>
+</div>
+<table class="table table-striped">
+  <thead><tr>
+    <th scope="col" class="no-select" *ngFor="let column of columnList">
+      <span [ngClass]="column.class">{{column.title}}</span>
+    </th>
+  </tr></thead>
+  <tbody>
+    <tr *ngFor="let row of dataList | filter:value" (click)="rowSelected.emit(row)" class="cursor-pointer">
+      <td *ngFor="let column of columnList">
+        <span *ngIf="!column.type">{{renderCell(row, column)}}</span>
+        <span *ngIf="column.type === columnTypes.img">
+          <img class="width-16px height-16px rounded-circle shadow img-circle-cover" *ngIf="!row['photo']" src="./assets/img/pills.svg" alt="">
+          <img class="width-16px height-16px rounded-circle shadow img-circle-cover" *ngIf="row['photo']" [src]="" alt="">
+        </span>
+        <span *ngIf="column.type === columnTypes.dateTime">{{renderCell(row, column) | date: 'HH:mm  dd-MM-yyyy'}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+  </ngb-pagination>
+
+  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+    <option *ngFor="let pag of utils.paginator" [ngValue]="pag.item">{{pag.item + ' ' + pag.label}}</option>
+  </select>
+</div>
