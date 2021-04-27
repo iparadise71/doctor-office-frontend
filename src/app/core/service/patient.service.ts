@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 const apiUrl = `${environment.apiUrl}/api/patient`;
 
@@ -13,6 +13,10 @@ export class PatientService {
   constructor(
     private api: HttpClient
   ) { }
+
+  savePatient(obj): Observable<any>{
+    return this.api.put(`${apiUrl}/enroll`, obj);
+  }
 
   getListPatients(): Observable<any>{
     return this.api.get(`${apiUrl}/list`);

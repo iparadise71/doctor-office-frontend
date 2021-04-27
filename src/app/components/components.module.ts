@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Filter} from '../core/service/filter';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { IconComponent } from './icon/icon.component';
 
 
 
@@ -19,7 +20,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CardOptionComponent,
     TableListComponent,
     Filter,
-    SearchFieldComponent
+    SearchFieldComponent,
+    IconComponent
   ],
   imports: [
     CommonModule,
@@ -28,11 +30,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  exports: [
-    HeaderComponent,
-    FullContainerComponent,
-    CardOptionComponent,
-    TableListComponent
-  ]
+    exports: [
+        HeaderComponent,
+        FullContainerComponent,
+        CardOptionComponent,
+        TableListComponent,
+        IconComponent
+    ]
 })
 export class ComponentsModule { }

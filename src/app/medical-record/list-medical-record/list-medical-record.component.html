@@ -1,19 +1,20 @@
 
 <div class="d-flex flex-row justify-content-between pr-3">
-  <h5>Lista de pacientes</h5>
-  <div class="d-flex flex-row px-3 align-items-center btn btn-outline-info cursor-pointer" (click)="enrollPatient()" >
-    <span class="pr-3">Registrar nuevo paciente</span>
+  <h5 class="m-0">Lista general de consultas</h5>
+  <div class="d-flex flex-row px-3 align-items-center btn btn-outline-info cursor-pointer" (click)="addMedicalRecord()" >
+    <span class="pr-3">Registrar consulta</span>
     <i icon="plus" class="font-size-20px"></i>
   </div>
 </div>
 <br>
 <app-table-list
-  [columnList]="utils.columnPatient"
-  [dataList]="patientList"
-  [dataListAux]="patientList"
+  [columnList]="utils.columnMedicalRecordMedicalPatient"
+  [dataList]="medicalRecordList"
+  [dataListAux]="medicalRecordList"
   [searchPlaceholder]="'Buscar por nombre, apellido, especialidad, dirección'"
   (rowSelected)="showRowDetail($event)"
   [collectionSize]="total"
   [page]="utils.page"
   [pageSize]="utils.pageSize"
 ></app-table-list>
+

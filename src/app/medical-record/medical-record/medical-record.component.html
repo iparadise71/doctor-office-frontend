@@ -1,0 +1,82 @@
+<H5>Registrar consulta</H5>
+<br>
+<div class="container h-100">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="d-flex flex-row">
+      <div class="col-6 ">
+        <div class="form-group">
+          <label for="doctor">Seleccione un doctor</label>
+          <div class="d-flex flex-row">
+            <select class="form-control" formControlName="doctor" id="doctor" [ngClass]="{ 'is-invalid': submitted && f.doctor.errors }">
+              <option *ngFor="let doc of doctorList" [value]="doc.idDoctor">{{doc.name + ' ' + doc.lastName}}</option>
+            </select>
+            <button class="btn btn-primary mx-2 text-nowrap" (click)="registerDoctor()">Nuevo Doctor</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="patient">Seleccione un paciente</label>
+          <div class="d-flex flex-row">
+            <select class="form-control" id="patient" formControlName="patient" [ngClass]="{ 'is-invalid': submitted && f.patient.errors }">
+              <option *ngFor="let pa of patientList" [value]="pa.idPatient">{{pa.name + ' ' + pa.lastName}}</option>
+            </select>
+            <button class="btn btn-primary mx-2 text-nowrap">Nuevo Paciente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="col-6 ">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" placeholder="ingrese una descripción"
+                 formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+          >
+        </div>
+      </div>
+      <div class="col-6 d-flex flex-row">
+        <div class="form-group col-6">
+          <label for="date">Fecha consulta</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" id="date"
+                   name="dp" [ngModelOptions]="{standalone: true}" [(ngModel)]="dateModel" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-info calendar" (click)="d.toggle()" type="button">
+                <i icon="calendar"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="date">Hora consulta</label>
+          <div class="input-group">
+            <ngb-timepicker [(ngModel)]="timeModel" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row col-12">
+      <div class="form-group w-100">
+        <label for="prescription">Ingrese las indicaciones</label>
+        <textarea class="form-control w-100" id="prescription" placeholder="Ingrese las indicaciones"
+                  formControlName="prescriptionDrug" [ngClass]="{ 'is-invalid': submitted && f.prescriptionDrug.errors }"
+        ></textarea>
+      </div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="form-group col-12">
+        <label for="drug">Seleccione un medicamento</label>
+        <div class="d-flex flex-row">
+          <select multiple class="form-control" id="drug" formControlName="prescriptionList" [ngClass]="{ 'is-invalid': submitted && f.prescriptionList.errors }">
+            <option *ngFor="let pa of utils.drugList" [value]="pa">{{pa.medicineDetail + ': = ' + pa.quantity}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-row justify-content-center form-group">
+      <button class="btn btn-primary w-25">Registrar consulta</button>
+    </div>
+  </form>
+</div>

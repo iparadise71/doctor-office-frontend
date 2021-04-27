@@ -1,12 +1,12 @@
+//noinspection deprecation
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DoctorService} from '../../core/service/doctor.service';
 import {MedicalRecordService} from '../../core/service/medical-record.service';
 import {Utilities} from '../../core/service/utilities';
-import {DoctorModel} from '../../core/models/doctor.model';
 import {PatientModel} from '../../core/models/patient.model';
-import {Observable} from 'rxjs-compat';
+import {Observable} from 'rxjs';
 import {PatientService} from '../../core/service/patient.service';
+import {MedicalRecordModel} from '../../core/models/medical-record.model';
 
 @Component({
   selector: 'app-detail',
@@ -16,9 +16,12 @@ import {PatientService} from '../../core/service/patient.service';
 export class DetailComponent implements OnInit {
   public utils = Utilities;
   public patient: PatientModel;
-  public medicalRecordList;
+  public medicalRecordList = [];
+  public medicalRecordSelected: MedicalRecordModel;
+  public prescriptionList = [];
+  public total = 0;
   private idPatient = '';
-  private total = 0;
+
   constructor(
     private route: ActivatedRoute,
     private patientService: PatientService,
@@ -26,14 +29,13 @@ export class DetailComponent implements OnInit {
   ) {
     const param = this.route.snapshot.paramMap.get('id');
     if (param){
-      console.log(this.utils.decode(param));
       this.idPatient = this.utils.decode(param);
     }
     Observable.combineLatest(
       this.patientService.getDetailPatient({idPatient: this.idPatient}),
       this.medicalRecordService.getListRecordByPatient({idPatient: this.idPatient})
     ).subscribe( ([patient, medicalRecord]) => {
-      if (patient && patient.patient){
+      if (patient && patient.patient) {
         this.patient = patient.patient;
       }
       if (medicalRecord && medicalRecord.total && medicalRecord.total > 0){
@@ -41,8 +43,6 @@ export class DetailComponent implements OnInit {
         this.total = medicalRecord.total;
         this.medicalRecordList = medicalRecord.medicalRecord;
       }
-      console.log(patient);
-      console.log(medicalRecord);
     }, error => {
       console.log(error);
     });
@@ -53,5 +53,12 @@ export class DetailComponent implements OnInit {
 
   showRowDetail(event): void {
     console.log(event);
+    this.medicalRecordSelected = event;
+    this.prescriptionList = this.medicalRecordSelected.prescriptionList;
+  }
+
+  closeDetail(): void {
+    this.prescriptionList = [];
+    this.medicalRecordSelected = undefined;
   }
 }

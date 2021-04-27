@@ -1,0 +1,58 @@
+<H5>Registrar nuevo doctor</H5>
+<br>
+<div class="container h-100">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="d-flex flex-row">
+      <div class="col-6 ">
+        <div class="form-group">
+          <label for="name">* Nombres</label>
+          <input type="text" class="form-control" id="name"
+                 formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          >
+        </div>
+      </div>
+      <div class="col-6 ">
+        <div class="form-group">
+          <label for="lastName">* Apelidos</label>
+          <input type="text" class="form-control" id="lastName"
+                 formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="col-6 ">
+        <div class="form-group">
+          <label for="speciality">* Especialidad</label>
+          <input type="text" class="form-control" id="speciality"
+                 formControlName="speciality" [ngClass]="{ 'is-invalid': submitted && f.speciality.errors }"
+          >
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <label for="birthday">* Fecha de nacimiento</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" id="birthday"
+                 name="dp" [ngModelOptions]="{standalone: true}" [(ngModel)]="dateModel" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-info calendar" (click)="d.toggle()" type="button">
+              <i icon="calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row col-12">
+      <div class="form-group w-100">
+        <label for="address">* Direccion</label>
+        <textarea class="form-control w-100" id="address" placeholder="Ingrese una direccion"
+                  formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+        ></textarea>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-row justify-content-center form-group">
+      <button class="btn btn-primary w-25">Registrar doctor</button>
+    </div>
+  </form>
+</div>

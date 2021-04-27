@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
   },
   {
+    path: 'medical-record',
+    loadChildren: () => import('./medical-record/medical-record.module').then(m => m.MedicalRecordModule)
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home'

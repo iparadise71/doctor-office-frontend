@@ -1,21 +1,26 @@
 <div *ngIf="searchPlaceholder">
   <app-search-field #filter [(value)]="value" placeholder="{{searchPlaceholder}}"></app-search-field>
 </div>
-<table class="table table-striped">
+<table class="table table-striped w-100">
   <thead><tr>
-    <th scope="col" class="no-select" *ngFor="let column of columnList">
+    <th scope="col" class="no-select" [ngClass]="column.class" *ngFor="let column of columnList">
       <span [ngClass]="column.class">{{column.title}}</span>
     </th>
   </tr></thead>
   <tbody>
     <tr *ngFor="let row of dataList | filter:value" (click)="rowSelected.emit(row)" class="cursor-pointer">
-      <td *ngFor="let column of columnList">
+      <td *ngFor="let column of columnList" [ngClass]="column.class">
         <span *ngIf="!column.type">{{renderCell(row, column)}}</span>
         <span *ngIf="column.type === columnTypes.img">
-          <img class="width-16px height-16px rounded-circle shadow img-circle-cover" *ngIf="!row['photo']" src="./assets/img/pills.svg" alt="">
+          <img class="width-16px height-16px rounded-circle shadow img-circle-cover" *ngIf="!row['photo']" src="./assets/img/user_icon.svg" alt="">
           <img class="width-16px height-16px rounded-circle shadow img-circle-cover" *ngIf="row['photo']" [src]="" alt="">
         </span>
-        <span *ngIf="column.type === columnTypes.dateTime">{{renderCell(row, column) | date: 'HH:mm  dd-MM-yyyy'}}</span>
+        <span *ngIf="column.type === columnTypes.detail">
+          <img class="width-16px height-16px rounded-circle shadow img-circle-cover" src="./assets/img/doc_detail.svg" alt="">
+        </span>
+        <span *ngIf="column.type === columnTypes.dateTime">{{renderCell(row, column) | date: 'HH:mm dd-MM-yyyy'}}</span>
+        <span *ngIf="column.type === columnTypes.date">{{renderCell(row, column) | date: 'dd-MM-yyyy'}}</span>
+        <span *ngIf="column.type === columnTypes.time">{{renderCell(row, column) | date: 'HH:mm'}}</span>
       </td>
     </tr>
   </tbody>

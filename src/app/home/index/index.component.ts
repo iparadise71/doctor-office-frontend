@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-index',
@@ -23,9 +23,9 @@ export class IndexComponent implements OnInit {
       title: 'Los mejores hospitales del mundo en 2021',
       description: 'El Hospital Mount Sinai ha vuelto a obtener los máximos honores en la lista de Newsweek de los mejores hospitales del mundo.'
     }
-  ]
+  ];
 
-  public optionList =[
+  public optionList = [
     {
       img: '',
       title: 'Doctores',
@@ -47,7 +47,7 @@ export class IndexComponent implements OnInit {
       actionLbl: 'ver mas...',
       action: '/medical-record'
     }
-  ]
+  ];
 
   constructor(config: NgbCarouselConfig) {
     config.interval = 5000;

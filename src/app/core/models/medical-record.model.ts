@@ -8,4 +8,5 @@ export interface MedicalRecordModel {
   prescriptionDrug: string;
   doctor?: DoctorModel;
   patient?: PatientModel;
+  prescriptionList?: any;
 }

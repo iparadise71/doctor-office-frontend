@@ -31,4 +31,7 @@ export class ListPatientComponent implements OnInit {
   showRowDetail(event): void {
     this.router.navigate(['patients/detail', this.utils.encode(event.idPatient.toString(10))]);
   }
+  enrollPatient(): void {
+    this.router.navigate(['patients/enroll']);
+  }
 }

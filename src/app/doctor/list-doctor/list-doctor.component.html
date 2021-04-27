@@ -1,4 +1,10 @@
-<h5>Lista de doctores</h5>
+<div class="d-flex flex-row justify-content-between pr-3">
+  <h5>Lista de doctores</h5>
+  <div class="d-flex flex-row px-3 align-items-center btn btn-outline-info cursor-pointer" (click)="enrollDoctor()" >
+    <span class="pr-3">Registrar nuevo doctor</span>
+    <i icon="plus" class="font-size-20px"></i>
+  </div>
+</div>
 <br>
 <app-table-list
  [columnList]="utils.columnDoctor"

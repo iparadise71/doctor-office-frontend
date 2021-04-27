@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DoctorModel} from '../../core/models/doctor.model';
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {DoctorService} from '../../core/service/doctor.service';
 import {MedicalRecordService} from '../../core/service/medical-record.service';
 import {Utilities} from '../../core/service/utilities';
-import {PatientModel} from "../../core/models/patient.model";
-import {Observable} from "rxjs-compat";
+import {PatientModel} from '../../core/models/patient.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-detail',
@@ -20,6 +20,7 @@ export class DetailComponent implements OnInit {
  private total = 0;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private doctorService: DoctorService,
     private medicalRecordService: MedicalRecordService
   ) {
@@ -51,5 +52,6 @@ export class DetailComponent implements OnInit {
 
   showRowDetail(event): void {
     console.log(event);
+    this.router.navigate(['patients/detail', this.utils.encode(event.idPatient.toString(10))]);
   }
 }

@@ -1,4 +1,4 @@
-/* tslint:disable:typedef one-variable-per-declaration no-bitwise */
+/* tslint:disable:typedef one-variable-per-declaration no-bitwise variable-name */
 import {PatientModel} from '../models/patient.model';
 import {ColumnModel} from '../models/column.model';
 
@@ -9,10 +9,10 @@ export class Utilities {
     {item: 10, label: 'por página'},
     {item: 15, label: 'por página'}
   ];
-  public static pageSize = Utilities.paginator[0].item;
+  public static pageSize = Utilities.paginator[1].item;
 
   public static columnDoctor: ColumnModel[] = [
-    { field: 'photo', title: 'Foto', class: '', type: 'IMG' },
+    { field: 'photo', title: 'Foto', class: 'text-center', type: 'IMG' },
     { field: 'name', title: 'Nombre'},
     { field: 'lastName', title: 'Apellidos'},
     { field: 'speciality', title: 'Especialidad'},
@@ -20,7 +20,7 @@ export class Utilities {
   ];
 
   public static columnPatient: ColumnModel[] = [
-    { field: 'photo', title: 'Foto', class: '', type: 'IMG' },
+    { field: 'photo', title: 'Foto', class: 'text-center', type: 'IMG' },
     { field: 'name', title: 'Nombre'},
     { field: 'lastName', title: 'Apellidos'},
     { field: 'address', title: 'Dirección'},
@@ -30,14 +30,57 @@ export class Utilities {
     { field: 'date', title: 'Fecha', type: 'DATETIME'},
     { field: 'description', title: 'Descripcion'},
     { field: 'prescriptionDrug', title: 'Indicaciones'},
-    { field: 'prescriptionDrug', title: 'Receta médica'}
+    { field: 'doctor.name', title: 'Doctor'},
+    { field: '', title: 'Detalle', type: 'DETAIL', class: 'text-center'}
   ];
 
+  public static columnMedicalRecordMedicalPatient: ColumnModel[] = [
+    { field: 'date', title: 'Fecha', type: 'DATETIME'},
+    { field: 'description', title: 'Descripcion'},
+    { field: 'prescriptionDrug', title: 'Indicaciones'},
+    { field: 'doctor.name', title: 'Doctor'},
+    { field: 'patient.name', title: 'Paciente'},
+    { field: '', title: 'Detalle', type: 'DETAIL', class: 'text-center'}
+  ];
+
+  public static columnPrescription: ColumnModel[] = [
+    { field: 'medicineDetail', title: 'Medicamento'},
+    { field: 'quantity', title: 'Cantidad'}
+  ];
+
+  public static drugList = [
+    {quantity: '30ml', medicineDetail: 'Apiretal (el Paracetamol de lo niños)'},
+    {quantity: '100gr', medicineDetail: 'Paracetamol'},
+    {quantity: '30gr', medicineDetail: 'Mucolíticos'},
+    {quantity: '50gr', medicineDetail: 'Antitusivos'},
+    {quantity: '120ml', medicineDetail: 'protector gástrico'},
+    {quantity: '50ml', medicineDetail: 'Spray nasal'},
+    {quantity: '1amp', medicineDetail: 'Suero fisiológico'},
+    {quantity: '1m', medicineDetail: 'Gasas'},
+    {quantity: '30ml', medicineDetail: 'Colirios'},
+    {quantity: '75gr', medicineDetail: 'Vitaminas A'},
+    {quantity: '75gr', medicineDetail: 'Vitaminas B'},
+    {quantity: '75gr', medicineDetail: 'Vitaminas C'},
+    {quantity: '150gr', medicineDetail: 'Resfriol'},
+  ];
   public static _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_/=';
 
   public static uniqueItemList(list, node): any {
     const unique = [...new Map(list.map(item => [item[node], item])).values()];
     return unique;
+  }
+
+  public static sortList(list, node, order): any {
+    list.sort((n1, n2) => {
+      if (n1[node] > n2[node]) {
+        return order === 'ASC' ? 1 : -1;
+      }
+      if (n1[node] < n2[node]) {
+        return order === 'ASC' ? -1 : 1;
+      }
+      return 0;
+    });
+    return list;
   }
 
   public static encode(input: string) {
@@ -167,6 +210,8 @@ export class Utilities {
 }
 export enum ColumnType {
   img = 'IMG',
+  time = 'TIME',
   date = 'DATE',
   dateTime = 'DATETIME',
+  detail = 'DETAIL'
 }

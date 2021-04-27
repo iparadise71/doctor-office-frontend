@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DoctorService} from '../../core/service/doctor.service';
 import {Utilities} from '../../core/service/utilities';
-import {Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {DetailComponent} from "../detail/detail.component";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-doctor',
@@ -34,5 +32,9 @@ export class ListDoctorComponent implements OnInit {
   showRowDetail(event): void {
     console.log(event);
     this.router.navigate(['doctors/detail', this.utils.encode(event.idDoctor.toString(10))]);
+  }
+
+  enrollDoctor(): void {
+    this.router.navigate(['doctors/enroll']);
   }
 }

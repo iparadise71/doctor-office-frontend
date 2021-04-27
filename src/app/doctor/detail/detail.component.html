@@ -6,8 +6,8 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img *ngIf="!doctor?.photo" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-              <img *ngIf="doctor?.photo" [src]="doctor.photo" alt="photo" class="rounded-circle" width="150">
+              <img *ngIf="!doctor?.photo" src="./assets/img/doctor_01.svg" alt="Admin" class="rounded-circle" width="80">
+              <img *ngIf="doctor?.photo" [src]="doctor.photo" alt="photo" class="rounded-circle" width="80">
               <div class="mt-3">
                 <h4>{{doctor?.name + ' ' + doctor?.lastName}}</h4>
                 <p class="text-secondary mb-1">{{doctor?.speciality}}</p>

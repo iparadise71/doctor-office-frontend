@@ -14,6 +14,9 @@ export class DoctorService {
     private api: HttpClient
   ) { }
 
+  saveDoctor(obj): Observable<any>{
+    return this.api.put(`${apiUrl}/enroll`, obj);
+  }
   getListDoctors(): Observable<any>{
     return this.api.get(`${apiUrl}/list`);
   }

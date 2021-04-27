@@ -1,0 +1,61 @@
+:host {
+  display: inline-block;
+  line-height: 0;
+  height: 1em;
+  width: 1em;
+
+  svg {
+    fill: currentColor;
+    height: 100%;
+    stroke: none;
+    stroke-width: 2;
+    width: 100%;
+  }
+
+  &[outline],
+  &[icon~="outline"] {
+    svg {
+      fill: none;
+      stroke: currentColor;
+    }
+
+    &[outline="white"],
+    &[icon~="white"] {
+      svg {
+        stroke: white;
+      }
+    }
+
+    &[fill],
+    &[icon~="fill"] {
+      svg {
+        fill: inherit;
+        stroke: currentColor;
+      }
+    }
+  }
+
+  &[invert],
+  &[icon~="invert"] {
+    background-color: currentColor;
+
+    svg {
+      fill: inherit;
+    }
+  }
+
+  &[circle],
+  &[icon~="circle"] {
+    font-size: 1.2em;
+    border: 0.05em solid currentColor;
+    border-radius: 50%;
+    padding: 0.1em;
+  }
+
+  &[fill="white"],
+  &[icon~="white"] {
+    svg {
+      fill: white;
+    }
+  }
+}

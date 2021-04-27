@@ -1,3 +1,4 @@
+/* tslint:disable:typedef forin */
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
