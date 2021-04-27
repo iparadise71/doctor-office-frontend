@@ -39,6 +39,7 @@ export class ListMedicalRecordComponent implements OnInit {
 
   showRowDetail(event): void {
     console.log(event);
+    this.router.navigate(['patients/detail', this.utils.encode(event.patient.idPatient.toString(10))]);
   }
 
   addMedicalRecord(): void {
